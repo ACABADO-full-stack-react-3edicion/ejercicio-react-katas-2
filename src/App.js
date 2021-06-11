@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Boton } from "./componentes/Boton";
+import { Input } from "./componentes/Input";
 
 function App() {
+  const [numero, setNumero] = useState(0);
+  const incrementa = () => {
+    if (numero === 10) {
+      return;
+    }
+    setNumero(numero + 1);
+  };
+  const decrementa = () => {
+    if (numero === 0) {
+      return;
+    }
+    setNumero(numero - 1);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="contenedor">
+      <Boton texto="-" accion={decrementa} />
+      <Input numero={numero} />
+      <Boton texto="+" accion={incrementa} />
     </div>
   );
 }
